@@ -1,4 +1,5 @@
 import React from "react";
+import styles from '../styles/Showcase.module.css';
 
 export type Project = {
   title: string;
@@ -14,77 +15,36 @@ type ShowcaseProps = {
 
 export default function Showcase({ projects }: ShowcaseProps) {
   return (
-    <div
-      style={{
-        padding: "1rem",
-        zIndex: 1,
-      }}
-    >
-      <h2
-        style={{
-          textAlign: "center",
-          fontSize: "4rem",
-          marginTop: "0",
-          marginBottom: "2rem",
-          color: "black",
-        }}
-      >
+    <div className={styles.showcaseContainer}>
+      <h2 className={styles.showcaseTitle}>
         Projects
       </h2>
 
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          gap: "1rem",
-          marginBottom: "2rem",
-          flexWrap: "wrap",
-        }}
-      >
+      <div className={styles.projectsGrid}>
         {projects.map(({ title, description, imageSrc, link, website }) => (
           <div
             key={title}
-            className="project-card"
-            style={{
-              border: "1px solid #ccc",
-              borderRadius: "0.5rem",
-              width: "18rem",
-              height: "30rem",
-              backgroundColor: "white",
-              boxShadow: "0 0.125rem 0.5rem rgba(0,0,0,0.1)",
-              overflow: "hidden",
-              display: "flex",
-              flexDirection: "column",
-              zIndex: 1,
-              transition: "all 0.3s ease",
-            }}
+            className={styles.card}
           >
             <img
               src={imageSrc}
               alt={title}
-              style={{ width: "100%", height: "17.25rem", objectFit: "cover" }}
+              className={styles.cardImage}
             />
-            <div style={{ padding: "1rem", flexGrow: 1 }}>
-              <h3 style={{ margin: "0 0 0.5rem 0", fontSize: "1.25rem" }}>{title}</h3>
-              <p style={{ margin: 0, fontSize: "1.2rem" }}>{description}</p>
+            <div className={styles.cardContent}>
+              <h3 className={styles.cardTitle}>
+                {title}
+              </h3>
+              <p className={styles.cardDescription}>
+                {description}
+              </p>
             </div>
-            <div
-              style={{
-                padding: "0 1rem 1rem 1rem",
-                display: "flex",
-                flexDirection: "column",
-                gap: "0.25rem",
-              }}
-            >
+            <div className={styles.cardFooter}>
               <a
                 href={link}
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{
-                  color: "#0070f3",
-                  textDecoration: "none",
-                  fontWeight: "bold",
-                }}
+                className={styles.codeLink}
               >
                 View Code →
               </a>
@@ -93,11 +53,7 @@ export default function Showcase({ projects }: ShowcaseProps) {
                   href={website}
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{
-                    color: "#28a745",
-                    textDecoration: "none",
-                    fontWeight: "bold",
-                  }}
+                  className={styles.siteLink}
                 >
                   Visit Site →
                 </a>
@@ -107,20 +63,7 @@ export default function Showcase({ projects }: ShowcaseProps) {
         ))}
       </div>
 
-      <style>{`
-        .project-card:hover {
-          transform: translateY(-0.25rem);
-          box-shadow: 0 0.625rem 1rem rgba(0, 0, 0, 0.2);
-        }
-        @media (max-width: 900px) {
-          .project-card {
-            width: 100% !important;
-            min-width: 0;
-            margin: 0 auto 1rem auto;
-            height: auto !important;
-          }
-        }
-      `}</style>
+
 	  </div>
   );
 }
